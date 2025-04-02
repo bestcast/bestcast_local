@@ -1,39 +1,25 @@
 @if(!empty($footer))
-    <!-- Start Footer Area  -->
-    <style type="text/css">
-        #logo_align_right {
-          position: relative;
-          float: right;
-        }
-        #logo_align_left {
-          position: relative;
-          float: left;
-        }
     </style>
     <footer class="eduvibe-footer-one edu-footer footer-style-default">
       <div class="footer-top">
           <div class="container eduvibe-animated-shape">
-              <div class="copyright-area copyright-default">
-                  <div class="container">
-                      <div class="row">
-                          <div class="col-md-6 col-xs-6">
-                              <div class="inner text-center footer_copywright">
-                                  @if($core['general_app_experience'])
-                                    <p><h6>{!! $core['general_app_experience'] !!}</h6></p>
-                                  @endif
-                              </div>
-                          </div>
-                          <div class="col-md-3 col-xs-3" id="logo_align_left">
-                            <a href="https://play.google.com/store/apps/details?id=com.bestcast.bestcaststudios" target="_blank">
-                                <img class="logo-light" src="{{ Lib::publicUrl($core['android_logo']) }}" alt="Logo">
-                            </a>
-                          </div>
-                          <div class="col-md-3 col-xs-3" id="logo_align_right">
-                            <a href="{{ route('browse') }}">
-                                <img class="logo-light" src="{{ Lib::publicUrl($core['ios_logo']) }}" alt="Logo">
-                            </a>
-                          </div>
+              <div class="row">
+                  <div class="col-md-6 col-xs-6">
+                      <div class="inner text-center">
+                          @if($core['general_app_experience'])
+                            <p><h5 class="experience-content">{!! $core['general_app_experience'] !!}</h5></p>
+                          @endif
                       </div>
+                  </div>
+                  <div class="col-md-3 col-xs-3" id="logo_align_left">
+                    <a href="https://play.google.com/store/apps/details?id=com.bestcast.bestcaststudios" target="_blank">
+                        <img class="logo-light" src="{{ Lib::publicUrl($core['android_logo']) }}" alt="Logo">
+                    </a>
+                  </div>
+                  <div class="col-md-3 col-xs-3" id="logo_align_right">
+                    <a href="{{ route('browse') }}">
+                        <img class="logo-light" src="{{ Lib::publicUrl($core['ios_logo']) }}" alt="Logo">
+                    </a>
                   </div>
               </div>
               <div class="row g-5">
@@ -128,29 +114,19 @@
 
           </div>
       </div>
-      <!-- <div class="copyright-area copyright-default">
+      <div class="copyright-area copyright-default">
           <div class="container">
               <div class="row">
-                  <div class="col-md-6 col-xs-6">
-                      <div class="inner text-center footer_copywright">
+                  <div class="col-lg-12">
+                      <div class="inner text-center">
                           @if($core['general_footer_copywrite'])
                               <p>{!! $core['general_footer_copywrite'] !!} </p>
                           @endif
                       </div>
                   </div>
-                  <div class="col-md-3 col-xs-3" id="logo_align_left">
-                    <a href="https://play.google.com/store/apps/details?id=com.bestcast.bestcaststudios" target="_blank">
-                        <img class="logo-light" src="{{ Lib::publicUrl($core['android_logo']) }}" alt="Logo">
-                    </a>
-                  </div>
-                  <div class="col-md-3 col-xs-3" id="logo_align_right">
-                    <a href="{{ route('browse') }}">
-                        <img class="logo-light" src="{{ Lib::publicUrl($core['ios_logo']) }}" alt="Logo">
-                    </a>
-                  </div>
               </div>
           </div>
-      </div> -->
+      </div>
     </footer>
     <!-- End Footer Area  -->
 @endif
