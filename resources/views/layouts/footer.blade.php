@@ -1,9 +1,8 @@
 @if(!empty($footer))
-    </style>
     <footer class="eduvibe-footer-one edu-footer footer-style-default">
       <div class="footer-top">
           <div class="container eduvibe-animated-shape">
-              <div class="row">
+              <div class="row appSpace">
                   <div class="col-md-6 col-xs-6">
                       <div class="inner text-center">
                           @if($core['general_app_experience'])
@@ -13,12 +12,12 @@
                   </div>
                   <div class="col-md-3 col-xs-3" id="logo_align_left">
                     <a href="https://play.google.com/store/apps/details?id=com.bestcast.bestcaststudios" target="_blank">
-                        <img class="logo-light" src="{{ Lib::publicUrl($core['android_logo']) }}" alt="Logo">
+                        <img class="logo-light img-width" src="{{ Lib::publicUrl($core['android_logo']) }}" alt="Logo">
                     </a>
                   </div>
                   <div class="col-md-3 col-xs-3" id="logo_align_right">
-                    <a href="{{ route('browse') }}">
-                        <img class="logo-light" src="{{ Lib::publicUrl($core['ios_logo']) }}" alt="Logo">
+                    <a href="https://apps.apple.com/in/app/bestcast-ott/id6502750053" target="_blank" >
+                        <img class="logo-light img-width" src="{{ Lib::publicUrl($core['ios_logo']) }}" alt="Logo">
                     </a>
                   </div>
               </div>

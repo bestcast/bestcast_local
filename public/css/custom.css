@@ -180,7 +180,7 @@ body > footer{flex-shrink: 0;}
 .edu-section-gapTop{ padding-top: 80px !important;}
 .edu-section-gapBottom{ padding-bottom: 80px !important;}
 .box-medium .content{max-width: 800px;margin: auto;}
-.footer-style-default .footer-top{padding: 60px 0;padding-bottom: 30px; border-bottom: 1px solid rgb(255 255 255 / 26%); margin-bottom: 20px;}
+.footer-style-default .footer-top{padding: 4px 0;padding-bottom: 30px; border-bottom: 1px solid rgb(255 255 255 / 26%); margin-bottom: 20px;}
 .footer-style-default .edu-footer-widget.explore-widget,.footer-style-default .edu-footer-widget.quick-link-widget{margin-left: 20px;}
 .footer-style-default .widget-title{font-weight: 500;font-size: 21px;}
 .footer-style-default .experience-content{font-weight: 500;font-size: 20px; padding-top:12px;}
@@ -991,7 +991,7 @@ header .container,header .container-sm,footer .container,footer .container-sm{ma
 .bnCtr .blended{display: none;}
 .haveFilter{margin-top: 30px;}
 .header-quote.tight .notifyBx{display: none;}
-.edu-section-gap,.footer-style-default .footer-top{padding: 30px 0 !important;}
+/*.edu-section-gap,.footer-style-default .footer-top{padding: 30px 0 !important;}*/
 .account.twocolmn .left-sidebar > .in{padding-right: 0px;}
 .account.twocolmn .left-sidebar, .account.twocolmn .content-area, .account.twocolmn .hLTGrid .hLTColm,
 .account.twocolmn > .hLTGrid{display: block;}
@@ -1028,12 +1028,13 @@ header .container,header .container-sm,footer .container,footer .container-sm{ma
 .ajxBanner{
   padding-top:70px;
 }
+.appSpace{
+  padding-bottom: 60px;
+}
 
-
-
-
-
-
+.img-width{
+  max-width: 92%;
+}
 
 
 
