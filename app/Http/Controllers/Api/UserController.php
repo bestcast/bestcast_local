@@ -528,7 +528,7 @@ class UserController extends Controller
         $user = User::find($user->id);
         $otp=$user->otp=rand(1000,9999);
         $user->save();
-        Otp::otpverify($user->phone,$otp);
+        Otp::otpverify($user->phone,$otp,$request->otp_message_type);
         return $this->success($user);
     }
 
@@ -558,9 +558,11 @@ class UserController extends Controller
             $user = User::find($user->id);
             $otp=$user->otp=rand(1000,9999);
             $user->save();
-
+            //set a session variable as message type.
+            $type = $user->otp_message_type;
+            session()->put('otp_message_type', $type);
             if(isset($_GET['phone'])){
-                Otp::otpverify($user->phone,$otp);
+                Otp::otpverify($user->phone,$otp,$user->otp_message_type);
                 sleep(1);
                 return redirect()->route('otp.verification', ['phone' => 1]);
             }else{

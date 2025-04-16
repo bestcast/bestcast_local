@@ -224,10 +224,11 @@ class AuthController extends Controller
     public function sendOtp(OtpUserRequest $request)
     {
         try {
+            
             // if(!empty($request->email))
             //     Session::put('formEmail', $request->email);
 
-            $request->validated($request->only(['email']));
+            $request->validated($request->only(['email']),$request->otp_message_type);
 
             //Verify user 
             if(is_numeric($request->email)){
@@ -246,17 +247,17 @@ class AuthController extends Controller
             $otp=$user->otp=rand(1000,9999);
             $user->updated_at=date("Y-m-d H:i:s");
             $user->save();
-
+            //set a session variable as message type.
+            $type = $request->otp_message_type;
+            session()->put('otp_message_type', $type);
             if(is_numeric($request->email)){
                 //send otp via message
-                Otp::otpverify($request->email,$otp);
+                Otp::otpverify($request->email,$otp,$request->otp_message_type);
             }else{
 
                 //Email::otp(array('mailbody'=>'','user'=>$user,'otp'=>$otp));
                 //send otp via email
             }
-
-
             $Item=[
                 'user_id'       => $user->id,
                 'type'          => 'admin',
@@ -370,6 +371,7 @@ class AuthController extends Controller
                 'email' => $request->phone."_".date("YmdHis")."@bestcast.co",//$request->email,
                 'phone' => empty($request->phone)?'':$request->phone,
                 'password' => Hash::make( Str::random(20)),//Hash::make($request->password),
+                'otp_message_type' => $request->otp_message_type,
             ]);
 
             if(!empty($request->refferer) && (strlen($request->refferer)<=15)){
@@ -397,7 +399,7 @@ class AuthController extends Controller
                     $user->updated_at=date("Y-m-d H:i:s");
                     $user->save();
                     if(is_numeric($user->phone)){
-                        Otp::otpverify($request->phone,$otp);
+                        Otp::otpverify($request->phone,$otp,$request->otp_message_type);
                     }
                 }
             }
