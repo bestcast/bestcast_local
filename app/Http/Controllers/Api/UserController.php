@@ -556,12 +556,14 @@ class UserController extends Controller
     {
         if(isset($_GET['send'])){
             $user=Auth::user();
+            //set a session variable as message type.
+            $type = $user->otp_message_type;
+            session()->put('otp_message_type', $type);
             if (!Cache::has($user->id)) { 
                 Cache::put($user->id, true, 10);
                 $user = User::find($user->id);
                 $otp=$user->otp=rand(1000,9999);
                 $user->save();
-
                 if(isset($_GET['phone'])){
                     Otp::otpverify($user->phone,$otp,$user->otp_message_type);
                     sleep(1);

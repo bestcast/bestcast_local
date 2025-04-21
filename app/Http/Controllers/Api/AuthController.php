@@ -231,7 +231,7 @@ class AuthController extends Controller
             // if(!empty($request->email))
             //     Session::put('formEmail', $request->email);
 
-            $request->validated($request->only(['email']));
+            $request->validated($request->only(['email']),$request->otp_message_type);
 
             //Verify user 
             if(is_numeric($request->email)){
