@@ -17,9 +17,6 @@
                             <form method="POST" action="{{ route('api.send.otp') }}" data-otp-url="{{ route('login.otp') }}" class="login ajx-sendotp-form" autocomplete="off">
                                 @csrf
                                 <div class="load-error-msg"></div>
-                                <div class="fieldtab dnn">
-                                    <div class="fieldtab-phone active">Mobile</div> | <div class="fieldtab-email">Email</div>
-                                </div>
                                 <div class="mb--30">
                                     <span><h6>Choose any one to receive an OTP message.</h6></span>
                                 </div>
@@ -30,6 +27,9 @@
                                 <div class="form-check form-check-inline mb--30">
                                   <input class="form-check-input" type="radio" name="otp_message_type" id="whatsapp" value="whatsapp" checked>
                                   <label class="form-check-label" for="whatsapp">Whatsapp</label>
+                                </div>
+                                <div class="fieldtab dnn">
+                                    <div class="fieldtab-phone active">Mobile</div> | <div class="fieldtab-email">Email</div>
                                 </div>
                                 <div class="input-box fieldtab-action phone mb--30">
                                     <div class="icon-phone"> +91 | </div>

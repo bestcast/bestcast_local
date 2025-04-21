@@ -69,9 +69,9 @@ class Otp {
 							]
 						];
 			$response = Http::withHeaders([
-						'Authorization' => 'Bearer '.env('WHATSAPP_TOKEN'),
+						'Authorization' => 'Bearer '.config('keys.WHATSAPP_TOKEN'),
 						'Content-Type' => 'application/json'
-			])->post('https://graph.facebook.com/v22.0/597788826754774/messages', $postData);
+			])->post('https://graph.facebook.com/v22.0/'.config('keys.WHATSAPP_PHONE_ID').'/messages', $postData);
 			if($response->status() == 200){
 				$message = ['status_code' => 200, 'message' => 'User SIGNIN Sucessfully'];
 			}else{
@@ -81,10 +81,10 @@ class Otp {
 			return $message;
 		}
 		else{
-			$templateid='1707171195592259541';
+			$templateid=config('keys.SMS_TEMPLATEID');
 	        $sender='BesMet';
-	        $key='a3c0d56a0349e4fe9cf1178c6000acce';
-	        $route='2';
+	        $key=config('keys.SMS_KEY');
+	        $route=config('keys.SMS_ROUTE');
 	        $sms=urlencode('To Verify your Mobile number for Bestcast OTT, OTP is :'.$otpnumber.'-Bestcast Metaverse Limited.');
 	        $otpapiurl='http://site.ping4sms.com/api/smsapi?key='.$key.'&route='.$route.'&sender='.$sender.'&number='.$phone.'&sms='.$sms.'&templateid='.$templateid;
         	$otpresponse=file_get_contents($otpapiurl);
