@@ -27,6 +27,9 @@ use App\Http\Requests\EmailverifyUserRequest;
 use App\Http\Resources\UserResource;
 use Laravel\Sanctum\PersonalAccessToken;
 use App\Models\Notification;
+use Cache;
+use Log;
+
 class AuthController extends Controller
 {
     use HttpResponses;
@@ -242,36 +245,41 @@ class AuthController extends Controller
 
             if(empty($user->status))
                 return $this->error('', 'Account Blocked! Please contact our admin.', 200);
-            
-            //Generate OTP
-            $otp=$user->otp=rand(1000,9999);
-            $user->updated_at=date("Y-m-d H:i:s");
-            $user->save();
-            //set a session variable as message type.
-            $type = $request->otp_message_type;
-            session()->put('otp_message_type', $type);
-            if(is_numeric($request->email)){
-                //send otp via message
-                Otp::otpverify($request->email,$otp,$request->otp_message_type);
-            }else{
+            if (!Cache::has($user->id)) { 
+                Cache::put($user->id, true, 10);
+                //Generate OTP
+                $otp=$user->otp=rand(1000,9999);
+                $user->updated_at=date("Y-m-d H:i:s");
+                $user->save();
+                //set a session variable as message type.
+                $type = $request->otp_message_type;
+                session()->put('otp_message_type', $type);
 
-                //Email::otp(array('mailbody'=>'','user'=>$user,'otp'=>$otp));
-                //send otp via email
+                if(is_numeric($request->email)){
+                    //send otp via message
+                    Otp::otpverify($request->email,$otp,$request->otp_message_type);
+                }else{
+
+                    //Email::otp(array('mailbody'=>'','user'=>$user,'otp'=>$otp));
+                    //send otp via email
+                }
+
+
+                $Item=[
+                    'user_id'       => $user->id,
+                    'type'          => 'admin',
+                    'title'         => 'OTP request',
+                    'content'       => 'User account '.$request->email.' requested OTP ',
+                    'mark_read'     => 1,
+                    'model'         => 'User',
+                    'visibility'    => 0,
+                    'relation_id'   => $user->id,
+                    'icon'          => 1
+                ];
+                $Notification = ($user->id==1)?'':Notification::create($Item);
+
+                return $this->success('','Otp sent to associated Email or Phone.'); //pro_edit
             }
-            $Item=[
-                'user_id'       => $user->id,
-                'type'          => 'admin',
-                'title'         => 'OTP request',
-                'content'       => 'User account '.$request->email.' requested OTP ',
-                'mark_read'     => 1,
-                'model'         => 'User',
-                'visibility'    => 0,
-                'relation_id'   => $user->id,
-                'icon'          => 1
-            ];
-            $Notification = ($user->id==1)?'':Notification::create($Item);
-
-            return $this->success('','Otp sent to associated Email or Phone.'); //pro_edit
         } catch (Exception $error) {
             return $this->error('Error occured while sending otp.',$error,500);
         }
@@ -391,7 +399,7 @@ class AuthController extends Controller
 
             //Request Token
             $response=User::userRequestLoginToken($user,$request);
-
+            $response['otp_message_type'] = $request->otp_message_type;
 
             if(!empty($request->device)){
                 if($request->device=='mobile' || $request->device=='tv' || $request->device=='postman'){
@@ -469,7 +477,7 @@ class AuthController extends Controller
 
             //Session::forget('setTokenEncryted');
             Session::forget('profileToken');
-
+            
             if(!empty($user->id)){
                 Auth::guard('web')->logout();
             }

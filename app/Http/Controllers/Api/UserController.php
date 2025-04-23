@@ -31,6 +31,7 @@ use App\Http\Resources\QrcodeResource;
 use App\Http\Requests\LoginOtpUserRequest;
 use Email;
 use Otp;
+use Cache;
 
 use Laravel\Sanctum\PersonalAccessToken;
 class UserController extends Controller
@@ -555,19 +556,24 @@ class UserController extends Controller
     {
         if(isset($_GET['send'])){
             $user=Auth::user();
-            $user = User::find($user->id);
-            $otp=$user->otp=rand(1000,9999);
-            $user->save();
             //set a session variable as message type.
             $type = $user->otp_message_type;
             session()->put('otp_message_type', $type);
-            if(isset($_GET['phone'])){
-                Otp::otpverify($user->phone,$otp,$user->otp_message_type);
-                sleep(1);
-                return redirect()->route('otp.verification', ['phone' => 1]);
+            if (!Cache::has($user->id)) { 
+                Cache::put($user->id, true, 10);
+                $user = User::find($user->id);
+                $otp=$user->otp=rand(1000,9999);
+                $user->save();
+                if(isset($_GET['phone'])){
+                    Otp::otpverify($user->phone,$otp,$user->otp_message_type);
+                    sleep(1);
+                    return redirect()->route('otp.verification', ['phone' => 1]);
+                }else{
+                    Email::otp(array('mailbody'=>'','user'=>$user,'otp'=>$otp));
+                    return redirect()->route('otp.verification');
+                }
             }else{
-                Email::otp(array('mailbody'=>'','user'=>$user,'otp'=>$otp));
-                return redirect()->route('otp.verification');
+                return redirect()->route('otp.verification', ['phone' => 1]);
             }
         }
 
