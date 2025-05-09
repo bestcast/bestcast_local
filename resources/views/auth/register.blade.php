@@ -20,10 +20,6 @@
                             <form method="POST" action="{{ route('api.register') }}" class="login ajx-register-form" >
                                 @csrf
                                 <div class="load-error-msg"></div>
-                                <div class="input-box profile mb--30">
-                                    <div class="icon-profile"> | </div>
-                                    <input id="name" type="text" class="input-text" name="name" placeholder="Name *" autocomplete="off"  @if($name) value="{{ $name }}" @else autofocus @endif>
-                                </div>
                                 <div class="mb--30">
                                     <span><h6>Choose any one to receive an OTP message.</h6></span>
                                 </div>
@@ -34,6 +30,10 @@
                                 <div class="form-check form-check-inline mb--30">
                                   <input id="whatsapp" type="radio" class="form-check-input" name="otp_message_type" autocomplete="off" value="whatsapp" checked>
                                   <label class="form-check-label" for="whatsapp">Whatsapp</label>
+                                </div>
+                                <div class="input-box profile mb--30">
+                                    <div class="icon-profile"> | </div>
+                                    <input id="name" type="text" class="input-text" name="name" placeholder="Name *" autocomplete="off"  @if($name) value="{{ $name }}" @else autofocus @endif>
                                 </div>
                                 <div class="input-box phone mb--30">
                                     <div class="icon-phone"> +91 | </div>

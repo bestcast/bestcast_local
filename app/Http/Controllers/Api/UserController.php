@@ -576,7 +576,7 @@ class UserController extends Controller
                 return redirect()->route('otp.verification', ['phone' => 1]);
             }
         }
-
+        Session::forget('profileToken');
         return view('auth.loginotp');
     }
 

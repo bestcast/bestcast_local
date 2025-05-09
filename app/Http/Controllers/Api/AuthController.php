@@ -354,13 +354,14 @@ class AuthController extends Controller
             //     Session::put('formEmail', $request->email);
 
 
-            $rule['name']=['required', 'max:255'];
+            $rule['name']=['required', 'min:5', 'regex:/^(?!test)(?!demo)(?!use)[\pL\s]+$/u'];
             $rule['phone']='digits_between:10,10|unique:users,phone';
             //$rule['email']=['required', 'email', 'max:255', 'unique:users,email'];
             //$rule['password']=['required', 'min:8'];
 
             $messages = [
                 'name' => 'Please enter a valid name.',
+                'name.regex' => 'The name field not allowed special characters.',
                 'password.min' => 'Password required atleast 8 character.',
                 'email' => 'Please enter a valid email address.',
                 'email.unique' => 'Email address is already linked to another account.',
