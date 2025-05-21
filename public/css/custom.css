@@ -180,7 +180,7 @@ body > footer{flex-shrink: 0;}
 .edu-section-gapTop{ padding-top: 80px !important;}
 .edu-section-gapBottom{ padding-bottom: 80px !important;}
 .box-medium .content{max-width: 800px;margin: auto;}
-.footer-style-default .footer-top{padding: 4px 0;padding-bottom: 30px; border-bottom: 1px solid rgb(255 255 255 / 26%); margin-bottom: 20px;}
+.footer-style-default .footer-top{padding: 60px 0;padding-bottom: 30px; border-bottom: 1px solid rgb(255 255 255 / 26%); margin-bottom: 20px;}
 .footer-style-default .edu-footer-widget.explore-widget,.footer-style-default .edu-footer-widget.quick-link-widget{margin-left: 20px;}
 .footer-style-default .widget-title{font-weight: 500;font-size: 21px;}
 .footer-style-default .experience-content{font-weight: 500;font-size: 20px; padding-top:12px;}
