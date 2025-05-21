@@ -130,22 +130,23 @@
 						<div class="vpl-settings-holder">
 							<div class="vpl-settings-home">
 								<div role="menu">
-									<button type="button" class="vpl-menu-item vpl-btn-reset" data-target="vpl-playback-rate-menu-holder"><span class="vpl-settings-menu-item-title">Speed</span><span class="vpl-settings-menu-item-value vpl-playback-rate-menu-value">1</span></button>
+
+									<button type="button" class="vpl-menu-item vpl-btn-reset" data-target="vpl-playback-rate-menu-holder"><span class="vpl-settings-menu-item-title class="vpl-settings-menu-item-value vpl-playback-rate-menu-value">Speed</span><span class="vpl-settings-menu-item-value vpl-playback-rate-menu-value">1</span></button>
 									
 									<button type="button" class="vpl-menu-item vpl-subtitle-settings-menu vpl-force-hide vpl-btn-reset" data-target="vpl-subtitle-menu-holder"><span class="vpl-settings-menu-item-title">Subtitles</span><span class="vpl-settings-menu-item-value vpl-subtitle-menu-value"></span></button>
-									
-									<button type="button" class="vpl-menu-item vpl-quality-settings-menu vpl-force-hide vpl-btn-reset" data-target="vpl-quality-menu-holder"><span class="vpl-settings-menu-item-title">Quality</span><span class="vpl-settings-menu-item-value vpl-quality-menu-value"></span></button>
+
+									<button type="button" class="vpl-menu-item vpl-quality-settings-menu vpl-btn-reset" data-target="vpl-quality-menu-holder"><span class="vpl-settings-menu-item-title">Quality</span><span class="vpl-settings-menu-item-value vpl-quality-menu-value">video_url</span></button>
 									
 									<button type="button" class="vpl-menu-item vpl-audio-language-settings-menu vpl-force-hide vpl-btn-reset" data-target="vpl-audio-language-menu-holder"><span class="vpl-settings-menu-item-title">Audio</span><span class="vpl-settings-menu-item-value vpl-audio-language-menu-value"></span></button>
 									
 								</div>
 							</div>
 							<div class="vpl-quality-menu-holder vpl-settings-menu">
-								<button type="button" class="vpl-menu-header vpl-btn-reset">
-									<span>Quality</span>
-								</button>
-								<div role="menu" class="vpl-quality-menu"></div>
-							</div>
+                        <button type="button" class="vpl-menu-header vpl-btn-reset">
+                           <span>Quality</span>
+                        </button>
+                        <div role="menu" class="vpl-quality-menu"></div>
+                     </div>
 							<div class="vpl-playback-rate-menu-holder vpl-settings-menu">
 								<button type="button" class="vpl-menu-header vpl-btn-reset">
 									<span>Speed</span>

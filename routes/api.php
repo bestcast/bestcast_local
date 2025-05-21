@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Movies\BrowseController;
 use App\Http\Controllers\Movies\GuestController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\QualityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,4 +101,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/deleteuser', [UserController::class, 'deleteuser'])->name('deleteuser');
 });
 
+Route::post('/videoquality', [QualityController::class, 'videoquality'])->name('videoquality');
 //Route::get('/data', [YourController::class, 'noAuthRequired']);
